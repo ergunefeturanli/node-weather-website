@@ -4,6 +4,23 @@ const hbs = require('hbs')
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
+//Language Support
+String.prototype.turkishtoEnglish = function () {
+    return this.replace('Ğ','g')
+        .replace('Ü','u')
+        .replace('Ş','s')
+        .replace('I','i')
+        .replace('İ','i')
+        .replace('Ö','o')
+        .replace('Ç','c')
+        .replace('ğ','g')
+ 		.replace('ü','u')
+        .replace('ş','s')
+        .replace('ı','i')
+        .replace('ö','o')
+        .replace('ç','c');
+};
+
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -49,8 +66,8 @@ app.get('/weather', (req, res) => {
             error: 'You must provide an address'
         })
     }
-
-    geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
+    
+    geocode(req.query.address.turkishtoEnglish(), (error, { latitude, longitude, location } = {}) => {
         if (error) {
             return res.send({ error })
         }

@@ -52,3 +52,10 @@ button{
     color: white;
     padding: 8px;
 }
+
+.weather-icon{
+    display: block;
+    margin-top: 15px;
+    margin-left: 80px;
+    width: 80px;
+}
